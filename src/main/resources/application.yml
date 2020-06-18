@@ -1,3 +1,18 @@
+#服务器配置
+server:
+  port: 8080
+
+#logging配置
+logging:
+  file:
+    path: debug_log.log
+    max-size: 10MB
+    max-history: 7
+  pattern:
+    file: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+    console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+  level: debug
+
 #数据源配置
 spring:
   datasource:
@@ -5,6 +20,7 @@ spring:
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
     password: 123456
+
 #mapper的xml文件的扫描路径
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
@@ -20,6 +36,6 @@ markerhub:
   jwt:
     # 加密秘钥
     secret: f4e2e52034348f86b67cde581c0f9eb5
-    # token有效时长，7天，单位秒
-    expire: 604800
-    header: token
+    # token有效时长，1天，单位秒
+    expire: 86400
+    header: nameless
