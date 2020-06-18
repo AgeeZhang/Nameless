@@ -1,11 +1,14 @@
 package com.banxian.nameless.config.shiro;
 
 import com.banxian.nameless.common.utils.JwtUtils;
+import com.banxian.nameless.entity.Menu;
+import com.banxian.nameless.entity.Role;
 import com.banxian.nameless.entity.User;
 import com.banxian.nameless.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.BeanUtils;
@@ -28,12 +31,13 @@ public class AccountRealm extends AuthorizingRealm {
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        /*这部分代码用来做接口权限控制(接口上配合 @RequiresPermissions("user:info") 权限控制 使用)
-        AccountProfile accountProfile = (AccountProfile) principalCollection.getPrimaryPrincipal();
+        //这部分代码用来做接口权限控制(接口上配合 @RequiresPermissions("user:info") 权限控制 使用)
+        /*AccountProfile accountProfile = (AccountProfile) principalCollection.getPrimaryPrincipal();
+        SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         User user = userService.getById(accountProfile.getId());
-        for (SysRole role : userInfo.getRoleList()) {
-            authorizationInfo.addRole(role.getRole());
-            for (SysPermission p : role.getPermissions()) {
+        for (Role role : user.getRoleList()) {
+            authorizationInfo.addRole(role.getName());
+            for (Menu p : role.getMenuList()) {
                 authorizationInfo.addStringPermission(p.getPermission());
             }
         }*/
