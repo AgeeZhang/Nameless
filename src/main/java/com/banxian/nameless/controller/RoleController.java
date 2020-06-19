@@ -1,16 +1,18 @@
 package com.banxian.nameless.controller;
 
 
+import cn.hutool.core.map.MapUtil;
 import cn.hutool.json.JSONObject;
 import com.banxian.nameless.common.lang.Result;
+import com.banxian.nameless.entity.Role;
 import com.banxian.nameless.service.RoleService;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * <p>
@@ -27,9 +29,41 @@ public class RoleController {
     @Autowired
     RoleService roleService;
 
-    @RequiresAuthentication
-    @GetMapping("/roleInfo")
-    public Result roleInfo(@RequestBody JSONObject jsonObject) {
-        return Result.succ(roleService.getById(jsonObject.getInt("id")));
+    @GetMapping("/list")
+    public Result list(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
+        Integer limit = jsonObject.getInt("limit");
+        Integer size = jsonObject.getInt("size");
+        Page<Role> page = new Page<>(limit, size);
+        IPage<Role> mapIPage = roleService.page(page);
+        return Result.succ(MapUtil.builder()
+                .put("total", mapIPage.getTotal())
+                .put("size", mapIPage.getSize())
+                .put("current", mapIPage.getCurrent())
+                .put("list", mapIPage.getRecords()).map()
+        );
+    }
+
+    @PostMapping("/create")
+    public Result create(@Validated @RequestBody Role role, HttpServletRequest request) {
+        roleService.save(role);
+        return Result.succ(null);
+    }
+
+    @GetMapping("/detail")
+    public Result detail(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
+        Role role = roleService.getById(jsonObject.getInt("id"));
+        return Result.succ(role);
+    }
+
+    @PostMapping("/update")
+    public Result update(@RequestBody Role role, HttpServletRequest request) {
+        roleService.updateById(role);
+        return Result.succ(null);
+    }
+
+    @PostMapping("/delete")
+    public Result delete(@RequestBody Role role, HttpServletRequest request) {
+        roleService.removeById(role.getId());
+        return Result.succ(null);
     }
 }

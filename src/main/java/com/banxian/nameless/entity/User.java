@@ -24,7 +24,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName(value = "m_user", resultMap = "userMap")
+@TableName(value = "m_user")
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;

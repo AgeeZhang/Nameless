@@ -8,6 +8,7 @@ import com.banxian.nameless.common.lang.Result;
 import com.banxian.nameless.config.shiro.AccountProfile;
 import com.banxian.nameless.entity.User;
 import com.banxian.nameless.service.UserService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -36,7 +37,7 @@ public class UserController {
 
     @RequiresAuthentication
     @GetMapping("/userInfo")
-//    @RequiresPermissions("user:info") 权限控制
+//    @RequiresPermissions("user:info") //权限控制
     public Result userInfo() {
         AccountProfile accountProfile = (AccountProfile) SecurityUtils.getSubject().getPrincipal();
         User user = userService.getById(accountProfile.getId());
@@ -44,7 +45,7 @@ public class UserController {
         return Result.succ(user);
     }
 
-    @GetMapping("/queryList")
+    @GetMapping("/list")
     public Result list(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
         Integer limit = jsonObject.getInt("limit");
         Integer size = jsonObject.getInt("size");
@@ -68,7 +69,7 @@ public class UserController {
         return Result.succ(null);
     }
 
-    @PostMapping("/detail")
+    @GetMapping("/detail")
     public Result detail(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
         User user = userService.getById(jsonObject.getInt("id"));
         user.setPassword(null);

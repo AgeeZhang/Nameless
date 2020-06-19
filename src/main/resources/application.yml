@@ -1,11 +1,10 @@
 #服务器配置
 server:
   port: 8080
-
 #logging配置
 logging:
   file:
-    path: debug_log.log
+    path: system_log
     max-size: 10MB
     max-history: 7
   pattern:
@@ -13,6 +12,8 @@ logging:
     console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
 #数据源配置
 spring:
+  application:
+    name: nameless
   datasource:
     url: jdbc:mysql://localhost:3306/nameless?useUnicode=true&characterEncoding=utf8
     driver-class-name: org.mariadb.jdbc.Driver
@@ -22,6 +23,8 @@ spring:
 #mapper的xml文件的扫描路径
 mybatis-plus:
   mapper-locations: classpath*:/mapper/**Mapper.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 #shire-redis缓存服务
 shiro-redis:
