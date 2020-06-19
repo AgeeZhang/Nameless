@@ -104,7 +104,5 @@ public class CodeGenerator {
         autoGenerator.setStrategy(strategyConfig);
         autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
         autoGenerator.execute();
-
-
     }
 }

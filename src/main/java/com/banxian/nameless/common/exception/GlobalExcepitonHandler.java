@@ -21,6 +21,7 @@ public class GlobalExcepitonHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(ShiroException.class)
     public Result handel401(ShiroException e) {
+        log.error("验证权限异常:-------------->{}", e.getMessage());
         return Result.fail(401, e.getMessage(), null);
     }
 
@@ -28,8 +29,8 @@ public class GlobalExcepitonHandler {
      * 处理Assert的异常
      */
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(value = IllegalAccessException.class)
-    public Result handel(IllegalAccessException e) throws IOException {
+    @ExceptionHandler(value = IllegalArgumentException.class)
+    public Result handel(IllegalArgumentException e) throws IOException {
         log.error("Assert异常:-------------->{}", e.getMessage());
         return Result.fail(e.getMessage());
     }
@@ -40,7 +41,7 @@ public class GlobalExcepitonHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public Result handel(MethodArgumentNotValidException e) throws IOException {
-        log.error("运行时异常:-------------->", e);
+        log.error("运行时校验错误异常:-------------->", e);
         BindingResult bindingResult = e.getBindingResult();
         ObjectError objectError = bindingResult.getAllErrors().stream().findFirst().get();
         return Result.fail(objectError.getDefaultMessage());
@@ -49,7 +50,7 @@ public class GlobalExcepitonHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(value = RuntimeException.class)
     public Result handel(RuntimeException e) throws IOException {
-        log.error("运行时异常:-------------->", e);
+        log.error("运行时其他异常:-------------->", e);
         return Result.fail(e.getMessage());
     }
 }
