@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.banxian.nameless.module.sys.mapper.UserMapper">
+    <resultMap id="userMap" type="com.banxian.nameless.module.sys.entity.User">
+        <id column="id" property="id"/>
+        <collection property="roleList" ofType="com.banxian.nameless.module.sys.entity.Role" column="id" fetchType="eager" select="findRolesById"/>
+    </resultMap>
+    <select id="findRolesById" resultMap="userMap" resultType="com.banxian.nameless.module.sys.entity.Role">
+        select m_role.*
+        from m_user_role as t_relate
+                 right join m_role on t_relate.role_id = m_role.id
+        where t_relate.user_id = #{id}
+    </select>
+</mapper>

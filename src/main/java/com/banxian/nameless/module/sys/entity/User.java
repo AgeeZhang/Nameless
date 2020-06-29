@@ -1,4 +1,4 @@
-package com.banxian.nameless.entity;
+package com.banxian.nameless.module.sys.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 

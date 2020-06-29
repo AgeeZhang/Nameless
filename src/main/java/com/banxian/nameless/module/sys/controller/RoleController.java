@@ -1,11 +1,11 @@
-package com.banxian.nameless.controller;
+package com.banxian.nameless.module.sys.controller;
 
 
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.json.JSONObject;
 import com.banxian.nameless.common.lang.Result;
-import com.banxian.nameless.entity.Menu;
-import com.banxian.nameless.service.MenuService;
+import com.banxian.nameless.module.sys.entity.Role;
+import com.banxian.nameless.module.sys.service.RoleService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,18 +23,18 @@ import javax.servlet.http.HttpServletRequest;
  * @since 2020-06-18
  */
 @RestController
-@RequestMapping("/menu")
-public class MenuController {
+@RequestMapping("/role")
+public class RoleController {
 
     @Autowired
-    MenuService menuService;
+    RoleService roleService;
 
     @GetMapping("/list")
     public Result list(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
         Integer limit = jsonObject.getInt("limit");
         Integer size = jsonObject.getInt("size");
-        Page<Menu> page = new Page<>(limit, size);
-        IPage<Menu> mapIPage = menuService.page(page);
+        Page<Role> page = new Page<>(limit, size);
+        IPage<Role> mapIPage = roleService.page(page);
         return Result.succ(MapUtil.builder()
                 .put("total", mapIPage.getTotal())
                 .put("size", mapIPage.getSize())
@@ -44,26 +44,26 @@ public class MenuController {
     }
 
     @PostMapping("/create")
-    public Result create(@Validated @RequestBody Menu menu, HttpServletRequest request) {
-        menuService.save(menu);
+    public Result create(@Validated @RequestBody Role role, HttpServletRequest request) {
+        roleService.save(role);
         return Result.succ(null);
     }
 
     @GetMapping("/detail")
     public Result detail(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
-        Menu menu = menuService.getById(jsonObject.getInt("id"));
-        return Result.succ(menu);
+        Role role = roleService.getById(jsonObject.getInt("id"));
+        return Result.succ(role);
     }
 
     @PostMapping("/update")
-    public Result update(@RequestBody Menu menu, HttpServletRequest request) {
-        menuService.updateById(menu);
+    public Result update(@RequestBody Role role, HttpServletRequest request) {
+        roleService.updateById(role);
         return Result.succ(null);
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestBody Menu menu, HttpServletRequest request) {
-        menuService.removeById(menu.getId());
+    public Result delete(@RequestBody Role role, HttpServletRequest request) {
+        roleService.removeById(role.getId());
         return Result.succ(null);
     }
 }

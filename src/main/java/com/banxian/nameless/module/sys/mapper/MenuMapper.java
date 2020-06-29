@@ -1,6 +1,6 @@
-package com.banxian.nameless.mapper;
+package com.banxian.nameless.module.sys.mapper;
 
-import com.banxian.nameless.entity.Menu;
+import com.banxian.nameless.module.sys.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

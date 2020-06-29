@@ -1,14 +1,11 @@
-package com.banxian.nameless.config.shiro;
+package com.banxian.nameless.common.shiro;
 
 import com.banxian.nameless.common.utils.JwtUtils;
-import com.banxian.nameless.entity.Menu;
-import com.banxian.nameless.entity.Role;
-import com.banxian.nameless.entity.User;
-import com.banxian.nameless.service.UserService;
+import com.banxian.nameless.module.sys.entity.User;
+import com.banxian.nameless.module.sys.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.BeanUtils;

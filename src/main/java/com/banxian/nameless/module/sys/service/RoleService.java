@@ -1,6 +1,6 @@
-package com.banxian.nameless.service;
+package com.banxian.nameless.module.sys.service;
 
-import com.banxian.nameless.entity.Role;
+import com.banxian.nameless.module.sys.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

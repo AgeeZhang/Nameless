@@ -1,4 +1,4 @@
-package com.banxian.nameless.config.shiro;
+package com.banxian.nameless.common.shiro;
 
 import lombok.Data;
 

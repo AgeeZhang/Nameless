@@ -1,4 +1,4 @@
-package com.banxian.nameless.config.shiro;
+package com.banxian.nameless.common.shiro;
 
 import cn.hutool.json.JSONUtil;
 import com.banxian.nameless.common.lang.Result;

@@ -1,8 +1,8 @@
-package com.banxian.nameless.service.impl;
+package com.banxian.nameless.module.sys.service.impl;
 
-import com.banxian.nameless.entity.User;
-import com.banxian.nameless.mapper.UserMapper;
-import com.banxian.nameless.service.UserService;
+import com.banxian.nameless.module.sys.entity.User;
+import com.banxian.nameless.module.sys.mapper.UserMapper;
+import com.banxian.nameless.module.sys.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
