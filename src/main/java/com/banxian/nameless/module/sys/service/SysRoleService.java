@@ -1,6 +1,6 @@
 package com.banxian.nameless.module.sys.service;
 
-import com.banxian.nameless.module.sys.entity.Role;
+import com.banxian.nameless.module.sys.entity.SysRoleEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author zzj
  * @since 2020-06-18
  */
-public interface RoleService extends IService<Role> {
+public interface SysRoleService extends IService<SysRoleEntity> {
 
 }

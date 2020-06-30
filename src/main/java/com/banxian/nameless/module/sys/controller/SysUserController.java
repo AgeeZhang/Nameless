@@ -6,8 +6,8 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.json.JSONObject;
 import com.banxian.nameless.common.lang.Result;
 import com.banxian.nameless.common.shiro.AccountProfile;
-import com.banxian.nameless.module.sys.entity.User;
-import com.banxian.nameless.module.sys.service.UserService;
+import com.banxian.nameless.module.sys.entity.SysUserEntity;
+import com.banxian.nameless.module.sys.service.SysUserService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,17 +29,17 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/user")
-public class UserController {
+public class SysUserController {
 
     @Autowired
-    UserService userService;
+    SysUserService userService;
 
     @RequiresAuthentication
     @GetMapping("/userInfo")
 //    @RequiresPermissions("user:info") //权限控制
     public Result userInfo() {
         AccountProfile accountProfile = (AccountProfile) SecurityUtils.getSubject().getPrincipal();
-        User user = userService.getById(accountProfile.getId());
+        SysUserEntity user = userService.getById(accountProfile.getId());
         user.setPassword(null);
         return Result.succ(user);
     }
@@ -48,8 +48,8 @@ public class UserController {
     public Result list(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
         Integer limit = jsonObject.getInt("limit");
         Integer size = jsonObject.getInt("size");
-        Page<User> page = new Page<>(limit, size);
-        IPage<User> mapIPage = userService.page(page);
+        Page<SysUserEntity> page = new Page<>(limit, size);
+        IPage<SysUserEntity> mapIPage = userService.page(page);
         return Result.succ(MapUtil.builder()
                 .put("total", mapIPage.getTotal())
                 .put("size", mapIPage.getSize())
@@ -59,7 +59,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public Result create(@Validated @RequestBody User user, HttpServletRequest request) {
+    public Result create(@Validated @RequestBody SysUserEntity user, HttpServletRequest request) {
         if (StringUtils.isNotEmpty(user.getPassword()))
             user.setPassword(SecureUtil.md5(user.getPassword()));
         else
@@ -70,13 +70,13 @@ public class UserController {
 
     @GetMapping("/detail")
     public Result detail(@RequestBody JSONObject jsonObject, HttpServletRequest request) {
-        User user = userService.getById(jsonObject.getInt("id"));
+        SysUserEntity user = userService.getById(jsonObject.getInt("id"));
         user.setPassword(null);
         return Result.succ(user);
     }
 
     @PostMapping("/update")
-    public Result update(@RequestBody User user, HttpServletRequest request) {
+    public Result update(@RequestBody SysUserEntity user, HttpServletRequest request) {
         if (StringUtils.isNotEmpty(user.getPassword()))
             user.setPassword(SecureUtil.md5(user.getPassword()));
         userService.updateById(user);
@@ -84,7 +84,7 @@ public class UserController {
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestBody User user, HttpServletRequest request) {
+    public Result delete(@RequestBody SysUserEntity user, HttpServletRequest request) {
         userService.removeById(user.getId());
         return Result.succ(null);
     }

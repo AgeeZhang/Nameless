@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.banxian.nameless.module.sys.mapper.RoleMapper">
-    <resultMap id="roleMap" type="com.banxian.nameless.module.sys.entity.Role">
+<mapper namespace="com.banxian.nameless.module.sys.dao.SysRoleDao">
+    <resultMap id="roleMap" type="com.banxian.nameless.module.sys.entity.SysRoleEntity">
         <id column="id" property="id"/>
-        <collection property="menuList" ofType="com.banxian.nameless.module.sys.entity.Menu" column="id" select="findMenusById"/>
+        <collection property="menuList" ofType="com.banxian.nameless.module.sys.entity.SysMenuEntity" column="id" select="findMenusById"/>
     </resultMap>
-    <select id="findMenusById" resultType="com.banxian.nameless.module.sys.entity.Menu">
+    <select id="findMenusById" resultType="com.banxian.nameless.module.sys.entity.SysMenuEntity">
         select m_menu.*
         from m_role_menu as t_relate
                  right join m_menu on t_relate.menu_id = m_menu.id

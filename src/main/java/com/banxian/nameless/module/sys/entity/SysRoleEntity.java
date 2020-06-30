@@ -1,13 +1,13 @@
 package com.banxian.nameless.module.sys.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
-import java.sql.Blob;
 import java.io.Serializable;
+import java.util.List;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -23,8 +23,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("m_menu")
-public class Menu implements Serializable {
+@TableName(value = "m_role" ,resultMap = "roleMap")
+public class SysRoleEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -37,21 +37,11 @@ public class Menu implements Serializable {
 
     private String name;
 
-    private Integer type;
-
-    private String icon;
-
-    private String url;
-
-    private String permission;
-
-    private Long fid;
-
-    private String fids;
-
-    private Integer sort;
+    private String desc;
 
     private Boolean status;
 
+    @TableField(exist = false)
+    private List<SysMenuEntity> menuList;
 
 }

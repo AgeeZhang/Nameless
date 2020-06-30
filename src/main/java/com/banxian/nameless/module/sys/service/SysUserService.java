@@ -1,6 +1,6 @@
 package com.banxian.nameless.module.sys.service;
 
-import com.banxian.nameless.module.sys.entity.User;
+import com.banxian.nameless.module.sys.entity.SysUserEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author zzj
  * @since 2020-06-17
  */
-public interface UserService extends IService<User> {
+public interface SysUserService extends IService<SysUserEntity> {
 
 }

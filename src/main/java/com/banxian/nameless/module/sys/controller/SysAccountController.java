@@ -5,8 +5,8 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.banxian.nameless.common.lang.Result;
 import com.banxian.nameless.common.utils.JwtUtils;
-import com.banxian.nameless.module.sys.entity.User;
-import com.banxian.nameless.module.sys.service.UserService;
+import com.banxian.nameless.module.sys.entity.SysUserEntity;
+import com.banxian.nameless.module.sys.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.Data;
 import org.apache.shiro.SecurityUtils;
@@ -19,18 +19,18 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/sys")
-public class AccountController {
+public class SysAccountController {
 
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
-    UserService userService;
+    SysUserService userService;
 
     @CrossOrigin
     @PostMapping("/login")
     public Result login(@Validated @RequestBody LoginData loginData, HttpServletResponse response) {
 
-        User user = userService.getOne(new QueryWrapper<User>().eq("username", loginData.getUsername()));
+        SysUserEntity user = userService.getOne(new QueryWrapper<SysUserEntity>().eq("username", loginData.getUsername()));
         Assert.notNull(user, "用户不存在");
         if (!user.getPassword().equals(SecureUtil.md5(loginData.getPassword()))) {
             return Result.fail("密码错误！");

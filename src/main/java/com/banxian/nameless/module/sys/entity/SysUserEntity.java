@@ -25,7 +25,7 @@ import javax.validation.constraints.NotBlank;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName(value = "m_user")
-public class User implements Serializable {
+public class SysUserEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -54,6 +54,6 @@ public class User implements Serializable {
     private LocalDateTime lastLogin;
 
     @TableField(exist = false)
-    private List<Role> roleList;
+    private List<SysRoleEntity> roleList;
 
 }

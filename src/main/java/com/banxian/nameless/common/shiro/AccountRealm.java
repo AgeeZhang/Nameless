@@ -1,8 +1,8 @@
 package com.banxian.nameless.common.shiro;
 
 import com.banxian.nameless.common.utils.JwtUtils;
-import com.banxian.nameless.module.sys.entity.User;
-import com.banxian.nameless.module.sys.service.UserService;
+import com.banxian.nameless.module.sys.entity.SysUserEntity;
+import com.banxian.nameless.module.sys.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -19,7 +19,7 @@ public class AccountRealm extends AuthorizingRealm {
     @Autowired
     JwtUtils jwtUtils;
     @Autowired
-    UserService userService;
+    SysUserService userService;
 
     @Override
     public boolean supports(AuthenticationToken token) {
@@ -46,7 +46,7 @@ public class AccountRealm extends AuthorizingRealm {
         JwtToken jwt = (JwtToken) authenticationToken;
         log.info("jwt----------------->{}", jwt);
         String userId = jwtUtils.getClaimByToken((String) jwt.getPrincipal()).getSubject();
-        User user = userService.getById(Long.parseLong(userId));
+        SysUserEntity user = userService.getById(Long.parseLong(userId));
         if (user == null) {
             throw new UnknownAccountException("账户不存在！");
         }
