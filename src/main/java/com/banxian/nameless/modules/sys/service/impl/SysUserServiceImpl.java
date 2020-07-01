@@ -1,8 +1,8 @@
-package com.banxian.nameless.module.sys.service.impl;
+package com.banxian.nameless.modules.sys.service.impl;
 
-import com.banxian.nameless.module.sys.entity.SysUserEntity;
-import com.banxian.nameless.module.sys.dao.SysUserDao;
-import com.banxian.nameless.module.sys.service.SysUserService;
+import com.banxian.nameless.modules.sys.entity.SysUserEntity;
+import com.banxian.nameless.modules.sys.dao.SysUserDao;
+import com.banxian.nameless.modules.sys.service.SysUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

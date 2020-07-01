@@ -23,6 +23,7 @@ spring:
 #mapper的xml文件的扫描路径
 mybatis-plus:
   mapper-locations: classpath*:/mapper/*/**Dao.xml
+  typeAliasesPackage: com.banxian.nameless.modules.*.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 

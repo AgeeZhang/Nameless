@@ -1,12 +1,12 @@
-package com.banxian.nameless.module.sys.controller;
+package com.banxian.nameless.modules.sys.controller;
 
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.banxian.nameless.common.lang.Result;
 import com.banxian.nameless.common.utils.JwtUtils;
-import com.banxian.nameless.module.sys.entity.SysUserEntity;
-import com.banxian.nameless.module.sys.service.SysUserService;
+import com.banxian.nameless.modules.sys.entity.SysUserEntity;
+import com.banxian.nameless.modules.sys.service.SysUserService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.Data;
 import org.apache.shiro.SecurityUtils;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SysAccountController {
 
     @Autowired
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
     @Autowired
     SysUserService userService;
 

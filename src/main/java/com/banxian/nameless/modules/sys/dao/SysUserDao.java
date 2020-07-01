@@ -1,7 +1,8 @@
-package com.banxian.nameless.module.sys.dao;
+package com.banxian.nameless.modules.sys.dao;
 
-import com.banxian.nameless.module.sys.entity.SysUserEntity;
+import com.banxian.nameless.modules.sys.entity.SysUserEntity;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author zzj
  * @since 2020-06-17
  */
+@Mapper
 public interface SysUserDao extends BaseMapper<SysUserEntity> {
 
 }

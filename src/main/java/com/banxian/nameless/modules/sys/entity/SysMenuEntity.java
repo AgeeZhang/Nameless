@@ -1,20 +1,19 @@
-package com.banxian.nameless.module.sys.entity;
+package com.banxian.nameless.modules.sys.entity;
 
+import com.banxian.nameless.modules.base.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
-import java.sql.Blob;
 import java.io.Serializable;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zzj
@@ -23,17 +22,10 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("m_menu")
-public class SysMenuEntity implements Serializable {
+@TableName("sys_menu")
+public class SysMenuEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
-
-    private LocalDateTime createtime;
-
-    private LocalDateTime updatetime;
 
     private String name;
 

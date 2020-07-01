@@ -1,5 +1,6 @@
-package com.banxian.nameless.module.sys.entity;
+package com.banxian.nameless.modules.sys.entity;
 
+import com.banxian.nameless.modules.base.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -14,7 +15,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author zzj
@@ -23,17 +24,10 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName(value = "m_role" ,resultMap = "roleMap")
-public class SysRoleEntity implements Serializable {
+@TableName(value = "sys_role")
+public class SysRoleEntity extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
-
-    private LocalDateTime createtime;
-
-    private LocalDateTime updatetime;
 
     private String name;
 

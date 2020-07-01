@@ -1,4 +1,4 @@
-package com.banxian.nameless.module.sys.controller;
+package com.banxian.nameless.modules.sys.controller;
 
 
 import cn.hutool.core.map.MapUtil;
@@ -6,8 +6,8 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.json.JSONObject;
 import com.banxian.nameless.common.lang.Result;
 import com.banxian.nameless.common.shiro.AccountProfile;
-import com.banxian.nameless.module.sys.entity.SysUserEntity;
-import com.banxian.nameless.module.sys.service.SysUserService;
+import com.banxian.nameless.modules.sys.entity.SysUserEntity;
+import com.banxian.nameless.modules.sys.service.SysUserService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;

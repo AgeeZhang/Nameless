@@ -1,6 +1,6 @@
-package com.banxian.nameless.module.sys.service;
+package com.banxian.nameless.modules.sys.service;
 
-import com.banxian.nameless.module.sys.entity.SysMenuEntity;
+import com.banxian.nameless.modules.sys.entity.SysMenuEntity;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

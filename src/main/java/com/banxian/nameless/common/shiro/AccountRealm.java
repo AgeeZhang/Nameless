@@ -1,8 +1,8 @@
 package com.banxian.nameless.common.shiro;
 
 import com.banxian.nameless.common.utils.JwtUtils;
-import com.banxian.nameless.module.sys.entity.SysUserEntity;
-import com.banxian.nameless.module.sys.service.SysUserService;
+import com.banxian.nameless.modules.sys.entity.SysUserEntity;
+import com.banxian.nameless.modules.sys.service.SysUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
